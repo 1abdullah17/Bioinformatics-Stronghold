@@ -1,0 +1,11 @@
+dna=input("Enter the dna sequence: ")
+
+replacement1=dna.replace("A", "t")
+replacement2=replacement1.replace("T", "a")
+replacement3=replacement2.replace("G", "c")
+replacement4=replacement3.replace("C", "g")
+
+upper_dna= replacement4.upper()
+reverse_dna= upper_dna[::-1]
+
+print(reverse_dna)
