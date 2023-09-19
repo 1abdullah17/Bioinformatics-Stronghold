@@ -1,0 +1,43 @@
+def calculate_gc_content(sequence):
+    gc_count = sequence.count("G") + sequence.count("C")
+    total_bases = len(sequence)
+    gc_content = (gc_count / total_bases) * 100
+    return gc_content
+
+def find_highest_gc_content(sequence_data):
+    highest_gc_id = ""
+    highest_gc_content = 0.0
+
+    for header, sequence in sequence_data.items():
+        gc_content = calculate_gc_content(sequence)
+        if gc_content > highest_gc_content:
+            highest_gc_id = header
+            highest_gc_content = gc_content
+
+    return highest_gc_id, highest_gc_content
+
+def read_fasta_file(file_path):
+    sequences = {}
+    current_header = None
+
+    with open(file_path, "r") as fasta_file:
+        for line in fasta_file:
+            line = line.strip()
+            if line.startswith(">"):
+                current_header = line[1:]
+                sequences[current_header] = ""
+            elif current_header is not None:
+                sequences[current_header] += line
+
+    return sequences
+
+# Read sequences from a FASTA file
+fasta_file_path = "C:/Users/abdul/Downloads/rosalind_gc (1).txt"
+fasta_data = read_fasta_file(fasta_file_path)
+
+# Find the highest GC-content
+highest_gc_id, highest_gc_content = find_highest_gc_content(fasta_data)
+
+# Print the result
+print(highest_gc_id)
+print(f"{highest_gc_content:.6f}")
