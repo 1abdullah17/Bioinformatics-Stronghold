@@ -1,0 +1,11 @@
+with open("C:/Users/abdul/Downloads/rosalind_hamm.txt","r") as output:
+    seq=output.read()
+    seq=seq.split("\n")
+    seq1=seq[0]
+    seq2=seq[1]
+    count=0
+    for i,j in zip(seq1,seq2):
+       if i!=j:
+          count+=1
+
+print(count)
